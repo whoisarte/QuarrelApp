@@ -1,0 +1,566 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C4B35AD2C3489FF0057416E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B35AC2C3489FF0057416E /* AppDelegate.swift */; };
+		0C4B35AF2C3489FF0057416E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B35AE2C3489FF0057416E /* SceneDelegate.swift */; };
+		0C4B35B42C3489FF0057416E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B35B32C3489FF0057416E /* Base */; };
+		0C4B35B62C348A010057416E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B35B52C348A010057416E /* Assets.xcassets */; };
+		0C4B35B92C348A010057416E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B35B82C348A010057416E /* Base */; };
+		0CBBE9242C34A1440074627C /* AssignedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9232C34A1440074627C /* AssignedNumber.swift */; };
+		0CBBE9262C34A1670074627C /* BuyerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9252C34A1670074627C /* BuyerInformation.swift */; };
+		0CBBE9402C34B8570074627C /* AssignedNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9342C34B8570074627C /* AssignedNumberCell.swift */; };
+		0CBBE9412C34B8570074627C /* AssignedNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBE9352C34B8570074627C /* AssignedNumberCell.xib */; };
+		0CBBE9422C34B8570074627C /* CurrentNumberState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9372C34B8570074627C /* CurrentNumberState.swift */; };
+		0CBBE9432C34B8570074627C /* OnChangeNumberStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9392C34B8570074627C /* OnChangeNumberStatus.swift */; };
+		0CBBE9442C34B8570074627C /* AssignedNumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE93B2C34B8570074627C /* AssignedNumbersViewModel.swift */; };
+		0CBBE9452C34B8570074627C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE93D2C34B8570074627C /* ViewController.swift */; };
+		0CBBE9492C34B8940074627C /* BuyerScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9482C34B8940074627C /* BuyerScreenVC.swift */; };
+		0CBBE94C2C35C9B40074627C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBE94A2C35C9B40074627C /* GoogleService-Info.plist */; };
+		0CBBE94F2C35D0860074627C /* FirestoreHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE94E2C35D0860074627C /* FirestoreHandler.swift */; };
+		C3784913551B8E9A0961F357 /* Pods_QuarrelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 672427673E383756C3F3FA6E /* Pods_QuarrelApp.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0C4B35A92C3489FF0057416E /* QuarrelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuarrelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C4B35AC2C3489FF0057416E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0C4B35AE2C3489FF0057416E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0C4B35B32C3489FF0057416E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0C4B35B52C348A010057416E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0C4B35B82C348A010057416E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0C4B35BA2C348A010057416E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0CBBE9232C34A1440074627C /* AssignedNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignedNumber.swift; sourceTree = "<group>"; };
+		0CBBE9252C34A1670074627C /* BuyerInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerInformation.swift; sourceTree = "<group>"; };
+		0CBBE9342C34B8570074627C /* AssignedNumberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignedNumberCell.swift; sourceTree = "<group>"; };
+		0CBBE9352C34B8570074627C /* AssignedNumberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssignedNumberCell.xib; sourceTree = "<group>"; };
+		0CBBE9372C34B8570074627C /* CurrentNumberState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentNumberState.swift; sourceTree = "<group>"; };
+		0CBBE9392C34B8570074627C /* OnChangeNumberStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnChangeNumberStatus.swift; sourceTree = "<group>"; };
+		0CBBE93B2C34B8570074627C /* AssignedNumbersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignedNumbersViewModel.swift; sourceTree = "<group>"; };
+		0CBBE93D2C34B8570074627C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0CBBE9482C34B8940074627C /* BuyerScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerScreenVC.swift; sourceTree = "<group>"; };
+		0CBBE94A2C35C9B40074627C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0CBBE94E2C35D0860074627C /* FirestoreHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHandler.swift; sourceTree = "<group>"; };
+		54D158211FDDF3433E217F6B /* Pods-QuarrelApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuarrelApp.debug.xcconfig"; path = "Target Support Files/Pods-QuarrelApp/Pods-QuarrelApp.debug.xcconfig"; sourceTree = "<group>"; };
+		672427673E383756C3F3FA6E /* Pods_QuarrelApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuarrelApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F4A34E32A79BCBF9F10357A /* Pods-QuarrelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuarrelApp.release.xcconfig"; path = "Target Support Files/Pods-QuarrelApp/Pods-QuarrelApp.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0C4B35A62C3489FF0057416E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3784913551B8E9A0961F357 /* Pods_QuarrelApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C4B35A02C3489FF0057416E = {
+			isa = PBXGroup;
+			children = (
+				0C4B35AB2C3489FF0057416E /* QuarrelApp */,
+				0C4B35AA2C3489FF0057416E /* Products */,
+				77A97813F0ED42C409C4655A /* Pods */,
+				67F6EB1124EA32E99E15B1B9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0C4B35AA2C3489FF0057416E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0C4B35A92C3489FF0057416E /* QuarrelApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0C4B35AB2C3489FF0057416E /* QuarrelApp */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE94A2C35C9B40074627C /* GoogleService-Info.plist */,
+				0CBBE93F2C34B8570074627C /* UI */,
+				0CBBE92A2C34A3FC0074627C /* Architecture */,
+				0CBBE9212C34A12C0074627C /* Domain */,
+				0C4B35AC2C3489FF0057416E /* AppDelegate.swift */,
+				0C4B35AE2C3489FF0057416E /* SceneDelegate.swift */,
+				0C4B35B22C3489FF0057416E /* Main.storyboard */,
+				0C4B35B52C348A010057416E /* Assets.xcassets */,
+				0C4B35B72C348A010057416E /* LaunchScreen.storyboard */,
+				0C4B35BA2C348A010057416E /* Info.plist */,
+			);
+			path = QuarrelApp;
+			sourceTree = "<group>";
+		};
+		0CBBE9212C34A12C0074627C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE9222C34A1320074627C /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		0CBBE9222C34A1320074627C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE9232C34A1440074627C /* AssignedNumber.swift */,
+				0CBBE9252C34A1670074627C /* BuyerInformation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0CBBE92A2C34A3FC0074627C /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE9312C34B68E0074627C /* FileWriter */,
+			);
+			path = Architecture;
+			sourceTree = "<group>";
+		};
+		0CBBE9312C34B68E0074627C /* FileWriter */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE94E2C35D0860074627C /* FirestoreHandler.swift */,
+			);
+			path = FileWriter;
+			sourceTree = "<group>";
+		};
+		0CBBE9362C34B8570074627C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE9342C34B8570074627C /* AssignedNumberCell.swift */,
+				0CBBE9352C34B8570074627C /* AssignedNumberCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0CBBE9382C34B8570074627C /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE9372C34B8570074627C /* CurrentNumberState.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		0CBBE93A2C34B8570074627C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE9392C34B8570074627C /* OnChangeNumberStatus.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		0CBBE93C2C34B8570074627C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE93B2C34B8570074627C /* AssignedNumbersViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0CBBE93E2C34B8570074627C /* GridScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE9362C34B8570074627C /* Cells */,
+				0CBBE9382C34B8570074627C /* Enum */,
+				0CBBE93A2C34B8570074627C /* Protocol */,
+				0CBBE93C2C34B8570074627C /* ViewModel */,
+				0CBBE93D2C34B8570074627C /* ViewController.swift */,
+			);
+			path = GridScreen;
+			sourceTree = "<group>";
+		};
+		0CBBE93F2C34B8570074627C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE9462C34B85C0074627C /* BuyerDetails */,
+				0CBBE93E2C34B8570074627C /* GridScreen */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0CBBE9462C34B85C0074627C /* BuyerDetails */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE9482C34B8940074627C /* BuyerScreenVC.swift */,
+			);
+			path = BuyerDetails;
+			sourceTree = "<group>";
+		};
+		67F6EB1124EA32E99E15B1B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				672427673E383756C3F3FA6E /* Pods_QuarrelApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77A97813F0ED42C409C4655A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				54D158211FDDF3433E217F6B /* Pods-QuarrelApp.debug.xcconfig */,
+				8F4A34E32A79BCBF9F10357A /* Pods-QuarrelApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0C4B35A82C3489FF0057416E /* QuarrelApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C4B35BD2C348A010057416E /* Build configuration list for PBXNativeTarget "QuarrelApp" */;
+			buildPhases = (
+				A5198B8ECADF012948802DE4 /* [CP] Check Pods Manifest.lock */,
+				0C4B35A52C3489FF0057416E /* Sources */,
+				0C4B35A62C3489FF0057416E /* Frameworks */,
+				0C4B35A72C3489FF0057416E /* Resources */,
+				781969AB712F0C9C6441E4D8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuarrelApp;
+			productName = QuarrelApp;
+			productReference = 0C4B35A92C3489FF0057416E /* QuarrelApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0C4B35A12C3489FF0057416E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					0C4B35A82C3489FF0057416E = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 0C4B35A42C3489FF0057416E /* Build configuration list for PBXProject "QuarrelApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0C4B35A02C3489FF0057416E;
+			productRefGroup = 0C4B35AA2C3489FF0057416E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0C4B35A82C3489FF0057416E /* QuarrelApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0C4B35A72C3489FF0057416E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C4B35B62C348A010057416E /* Assets.xcassets in Resources */,
+				0C4B35B92C348A010057416E /* Base in Resources */,
+				0CBBE94C2C35C9B40074627C /* GoogleService-Info.plist in Resources */,
+				0CBBE9412C34B8570074627C /* AssignedNumberCell.xib in Resources */,
+				0C4B35B42C3489FF0057416E /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		781969AB712F0C9C6441E4D8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuarrelApp/Pods-QuarrelApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuarrelApp/Pods-QuarrelApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuarrelApp/Pods-QuarrelApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5198B8ECADF012948802DE4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QuarrelApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0C4B35A52C3489FF0057416E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CBBE9422C34B8570074627C /* CurrentNumberState.swift in Sources */,
+				0CBBE9402C34B8570074627C /* AssignedNumberCell.swift in Sources */,
+				0CBBE9432C34B8570074627C /* OnChangeNumberStatus.swift in Sources */,
+				0CBBE9452C34B8570074627C /* ViewController.swift in Sources */,
+				0CBBE94F2C35D0860074627C /* FirestoreHandler.swift in Sources */,
+				0CBBE9492C34B8940074627C /* BuyerScreenVC.swift in Sources */,
+				0CBBE9262C34A1670074627C /* BuyerInformation.swift in Sources */,
+				0C4B35AD2C3489FF0057416E /* AppDelegate.swift in Sources */,
+				0CBBE9442C34B8570074627C /* AssignedNumbersViewModel.swift in Sources */,
+				0CBBE9242C34A1440074627C /* AssignedNumber.swift in Sources */,
+				0C4B35AF2C3489FF0057416E /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0C4B35B22C3489FF0057416E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C4B35B32C3489FF0057416E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0C4B35B72C348A010057416E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C4B35B82C348A010057416E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0C4B35BB2C348A010057416E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0C4B35BC2C348A010057416E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0C4B35BE2C348A010057416E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54D158211FDDF3433E217F6B /* Pods-QuarrelApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H2DB73D4C9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuarrelApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whoisarte.quarrel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0C4B35BF2C348A010057416E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F4A34E32A79BCBF9F10357A /* Pods-QuarrelApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H2DB73D4C9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuarrelApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whoisarte.quarrel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C4B35A42C3489FF0057416E /* Build configuration list for PBXProject "QuarrelApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C4B35BB2C348A010057416E /* Debug */,
+				0C4B35BC2C348A010057416E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C4B35BD2C348A010057416E /* Build configuration list for PBXNativeTarget "QuarrelApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C4B35BE2C348A010057416E /* Debug */,
+				0C4B35BF2C348A010057416E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0C4B35A12C3489FF0057416E /* Project object */;
+}
