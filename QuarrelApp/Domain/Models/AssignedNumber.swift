@@ -9,12 +9,16 @@ import Foundation
 
 struct AssignedNumber: Codable {
     static let localNumbersIdentifier: String = "localNumbersIdentifier"
-    let state: CurrentNumberState
+    var state: CurrentNumberState
     let buyerInformation: BuyerInformation
     
     init(state: CurrentNumberState, buyerInformation: BuyerInformation) {
         self.state = state
         self.buyerInformation = buyerInformation
+    }
+    
+    mutating func changeStatus(to status: CurrentNumberState) {
+        self.state = status
     }
     
     enum CodingKeys: String, CodingKey {

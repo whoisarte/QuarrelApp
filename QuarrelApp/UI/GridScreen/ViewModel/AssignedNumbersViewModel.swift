@@ -33,11 +33,11 @@ class AssignedNumbersViewModel {
         return AssignedNumber(state: .nonSelected, buyerInformation: BuyerInformation(name: "", selectedNumber: 100000, paidQuantity: 0.0))
     }
     
-    func changeNumberStatus(at index: IndexPath, to status: AssignedNumber) async {
+    func changeNumberStatus(at index: IndexPath, to status: CurrentNumberState) async {
         let indx = index.row
         if self.numbers.count > 0 &&
             self.numbers.indices.contains(indx) {
-            self.numbers[indx] = status
+            self.numbers[indx].changeStatus(to: status)
             self.onChangedNumberStatusDelegate?.onChangedNumberStatus(at: index)
             await FirestoreHandler.updateNumber(with: indx, of: self.numbers[indx])
         }

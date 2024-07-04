@@ -10,6 +10,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var viewActivityIndicator: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     internal var viewModel: AssignedNumbersViewModel = AssignedNumbersViewModel()
 //    func setViewModel(viewModel: AssignedNumbersViewModel) {
@@ -18,6 +20,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.activityIndicator.startAnimating()
         self.viewModel.onChangedNumberStatusDelegate = self
         self.configureCollectionView()
     }
@@ -45,6 +48,27 @@ class ViewController: UIViewController {
         layout.minimumInteritemSpacing = 4
         self.collectionView.setCollectionViewLayout(layout, animated: true)
     }
+    
+    func navigateToBuyerDetailsWithNumber(number: AssignedNumber, at index: IndexPath) {
+        if let vc = UIStoryboard(name: BuyerScreenVC.storyboard, bundle: nil)
+            .instantiateViewController(withIdentifier: BuyerScreenVC.identifier) as? BuyerScreenVC {
+            let number = self.viewModel.getNumber(at: index.row)
+            vc.number = number
+            vc.indexPath = index
+            vc.didUpdateNumber = { [weak self] number in
+                Task {
+                    await self?.viewModel.changeNumberStatus(at: index,
+                                                             to: number.state)
+                }
+            }
+            DispatchQueue.main.async {
+                self.navigationController?.navigationBar.prefersLargeTitles = false
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        }
+    }
 }
 
 //MARK: Extension to reload sections in collectionView
@@ -59,45 +83,47 @@ extension ViewController: OnChangedNumberStatus {
     func onRetrieveNumbers() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                UIView.animate(withDuration: 0.3) {
+                    self.viewActivityIndicator.alpha = 0.0
+                } completion: { _ in
+                    self.activityIndicator.stopAnimating()
+                }
+            }
         }
     }
 }
 
 //MARK: Context Menu Configuration
 extension ViewController {
-    func configureContextMenu(index: IndexPath) -> UIContextMenuConfiguration{
+    func configureContextMenu(index: IndexPath, number: AssignedNumber) -> UIContextMenuConfiguration{
         let context = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
             let edit = UIAction(title: "Editar información", image: UIImage(systemName: "square.and.pencil"), identifier: nil, discoverabilityTitle: nil, state: .off) { (_) in
-                print("Editar información tapped")
+                self.navigateToBuyerDetailsWithNumber(number: number, at: index)
             }
+            
             let paidStateAction = UIAction(title: "Pagado", image: UIImage(systemName: "oval.fill"), identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
-                let modifiedNumber = self.viewModel.getNumber(at: index.row)
                 Task {
                     await self.viewModel.changeNumberStatus(at: index,
-                                                            to: AssignedNumber(state: .paid,
-                                                                               buyerInformation: modifiedNumber.buyerInformation))
+                                                            to: .paid)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     self.collectionView.contextMenuInteraction?.dismissMenu()
                 }
             }
             let partialPaidStateAction = UIAction(title: "Pagado parcialmente", image: UIImage(systemName: "oval.lefthalf.filled"), identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
-                let modifiedNumber = self.viewModel.getNumber(at: index.row)
                 Task {
                     await self.viewModel.changeNumberStatus(at: index,
-                                                            to: AssignedNumber(state: .partialPaid,
-                                                                               buyerInformation: modifiedNumber.buyerInformation))
+                                                            to: .partialPaid)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     self.collectionView.contextMenuInteraction?.dismissMenu()
                 }
             }
             let nonPaidStateAction = UIAction(title: "Sin pagar", image: UIImage(systemName: "oval"), identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
-                let modifiedNumber = self.viewModel.getNumber(at: index.row)
                 Task {
                     await self.viewModel.changeNumberStatus(at: index,
-                                                            to: AssignedNumber(state: .nonPaid,
-                                                                               buyerInformation: modifiedNumber.buyerInformation))
+                                                            to: .nonPaid)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     self.collectionView.contextMenuInteraction?.dismissMenu()
@@ -105,7 +131,8 @@ extension ViewController {
             }
             
             let menu = UIMenu(title: "Cambiar status", image: nil, identifier: nil, options: .displayInline, children: [paidStateAction, partialPaidStateAction, nonPaidStateAction])
-            return UIMenu(image: nil, identifier: nil, options: .displayInline, children: [edit,menu])
+            let childrenMenu = number.state != .nonSelected ? [edit,menu] : [edit]
+            return UIMenu(image: nil, identifier: nil, options: .displayInline, children: childrenMenu)
         }
         return context
     }
@@ -126,30 +153,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let vc = UIStoryboard(name: BuyerScreenVC.storyboard, bundle: nil)
-            .instantiateViewController(withIdentifier: BuyerScreenVC.identifier) as? BuyerScreenVC {
-            let number = self.viewModel.getNumber(at: indexPath.row)
-            vc.number = number
-            vc.indexPath = indexPath
-            vc.didUpdateNumber = { [weak self] number in
-                Task {
-                    await self?.viewModel.changeNumberStatus(at: indexPath,
-                                                            to: AssignedNumber(state: .paid,
-                                                                               buyerInformation: number.buyerInformation))
-                }
-            }
-            DispatchQueue.main.async {
-                self.navigationController?.navigationBar.prefersLargeTitles = false
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            }
-        }
-        print("Go to user detail")
+        self.navigateToBuyerDetailsWithNumber(number: self.viewModel.getNumber(at: indexPath.row), at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        return self.configureContextMenu(index: indexPath)
+        return self.configureContextMenu(index: indexPath, number: self.viewModel.getNumber(at: indexPath.row))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
