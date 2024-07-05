@@ -29,6 +29,6 @@ Technologies Used:
     - MVVM
 
 
-I performed it just for the registry purpose in 3 days, so it is relatively simple. 
+I performed it just for the registry purpose, in 2 days. It's relatively simple. 
 
 ![alt text](https://github.com/whoisarte/QuarrelApp/blob/master/Gif.gif "Logo Title Text 1")
