@@ -25,6 +25,16 @@ class AssignedNumbersViewModel {
         return self.numbers
     }
     
+    func modifyNumberWithNewOne(at index: IndexPath, with number: AssignedNumber) {
+        if self.numbers.count > 0 &&
+            self.numbers.indices.contains(index.row) {
+                self.numbers[index.row] = number
+                self.onChangedNumberStatusDelegate?.onChangedNumberStatus(at: index)
+            return
+            }
+        print("Number can't be modified. Arrays is empty or doesn't contain index")
+    }
+    
     func getNumber(at index: Int) -> AssignedNumber {
         if self.numbers.count > 0 &&
             self.numbers.indices.contains(index) {

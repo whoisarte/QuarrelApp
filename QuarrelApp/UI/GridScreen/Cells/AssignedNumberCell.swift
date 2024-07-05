@@ -37,15 +37,6 @@ class AssignedNumberCell: UICollectionViewCell {
     
     func setColor(by state: CurrentNumberState) {
         self.changeBorderWidth(to: state == .nonSelected ? 0.5 : 0.0)
-        switch state {
-        case .paid:
-            self.viewContainerNumber.backgroundColor = .systemGreen
-        case .partialPaid:
-            self.viewContainerNumber.backgroundColor = .systemOrange
-        case .nonPaid:
-            self.viewContainerNumber.backgroundColor = .systemRed
-        case .nonSelected:
-            self.viewContainerNumber.backgroundColor = .white
-        }
+        self.viewContainerNumber.backgroundColor = state.colorValue
     }
 }

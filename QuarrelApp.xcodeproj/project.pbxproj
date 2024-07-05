@@ -24,6 +24,7 @@
 		0CBBE94C2C35C9B40074627C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBE94A2C35C9B40074627C /* GoogleService-Info.plist */; };
 		0CBBE94F2C35D0860074627C /* FirestoreHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE94E2C35D0860074627C /* FirestoreHandler.swift */; };
 		0CBBE9562C3679220074627C /* PriceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9552C3679220074627C /* PriceConstants.swift */; };
+		0CBBE9582C38A6100074627C /* BuyerInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9572C38A6100074627C /* BuyerInformationViewModel.swift */; };
 		C3784913551B8E9A0961F357 /* Pods_QuarrelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 672427673E383756C3F3FA6E /* Pods_QuarrelApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		0CBBE94A2C35C9B40074627C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0CBBE94E2C35D0860074627C /* FirestoreHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHandler.swift; sourceTree = "<group>"; };
 		0CBBE9552C3679220074627C /* PriceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceConstants.swift; sourceTree = "<group>"; };
+		0CBBE9572C38A6100074627C /* BuyerInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerInformationViewModel.swift; sourceTree = "<group>"; };
 		54D158211FDDF3433E217F6B /* Pods-QuarrelApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuarrelApp.debug.xcconfig"; path = "Target Support Files/Pods-QuarrelApp/Pods-QuarrelApp.debug.xcconfig"; sourceTree = "<group>"; };
 		672427673E383756C3F3FA6E /* Pods_QuarrelApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuarrelApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F4A34E32A79BCBF9F10357A /* Pods-QuarrelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuarrelApp.release.xcconfig"; path = "Target Support Files/Pods-QuarrelApp/Pods-QuarrelApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				0CBBE9482C34B8940074627C /* BuyerScreenVC.swift */,
+				0CBBE9572C38A6100074627C /* BuyerInformationViewModel.swift */,
 			);
 			path = BuyerDetails;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				0CBBE9422C34B8570074627C /* CurrentNumberState.swift in Sources */,
 				0CBBE9402C34B8570074627C /* AssignedNumberCell.swift in Sources */,
 				0CBBE9432C34B8570074627C /* OnChangeNumberStatus.swift in Sources */,
+				0CBBE9582C38A6100074627C /* BuyerInformationViewModel.swift in Sources */,
 				0CBBE9452C34B8570074627C /* ViewController.swift in Sources */,
 				0CBBE94F2C35D0860074627C /* FirestoreHandler.swift in Sources */,
 				0CBBE9492C34B8940074627C /* BuyerScreenVC.swift in Sources */,

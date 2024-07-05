@@ -53,13 +53,9 @@ class ViewController: UIViewController {
         if let vc = UIStoryboard(name: BuyerScreenVC.storyboard, bundle: nil)
             .instantiateViewController(withIdentifier: BuyerScreenVC.identifier) as? BuyerScreenVC {
             let number = self.viewModel.getNumber(at: index.row)
-            vc.number = number
-            vc.indexPath = index
+            vc.setViewModel(viewModel: BuyerInformationViewModel(number: number, index: index))
             vc.didUpdateNumber = { [weak self] number in
-                Task {
-                    await self?.viewModel.changeNumberStatus(at: index,
-                                                             to: number.state)
-                }
+                self?.viewModel.modifyNumberWithNewOne(at: index, with: number)
             }
             DispatchQueue.main.async {
                 self.navigationController?.navigationBar.prefersLargeTitles = false

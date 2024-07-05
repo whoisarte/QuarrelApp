@@ -22,8 +22,11 @@ class BuyerScreenVC: UIViewController {
     @IBOutlet weak var buttonModifyData: UIButton!
     @IBOutlet weak var switchUserDidPayTotal: UISwitch!
     
-    var indexPath: IndexPath?
-    var number: AssignedNumber?
+    var viewModel: BuyerInformationViewModel?
+    func setViewModel(viewModel: BuyerInformationViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var didUpdateNumber: ((AssignedNumber) -> Void)?
     var numberWillBeModified: Bool = false {
         didSet {
@@ -56,7 +59,7 @@ class BuyerScreenVC: UIViewController {
     }
     
     func configurateNavigationBar() {
-        if let number = self.number {
+        if let number = self.viewModel?.number {
             self.navigationController?.navigationBar.tintColor = number.state.colorValue
             self.navigationController?.navigationBar.barTintColor = number.state.colorValue
             let textAttributes = [NSAttributedString.Key.foregroundColor: number.state.colorValue]
@@ -71,7 +74,7 @@ class BuyerScreenVC: UIViewController {
         UIView.animate(withDuration: 0.2) {
             self.buttonModifyData.layer.isHidden = !self.numberWillBeModified
             self.buttonModifyData.layer.backgroundColor = UIColor.clear.cgColor
-            self.buttonModifyData.tintColor = self.number?.state.colorValue
+            self.buttonModifyData.tintColor = self.self.viewModel?.number.state.colorValue
         }
     }
     
@@ -80,14 +83,14 @@ class BuyerScreenVC: UIViewController {
         self.textFieldBuyerName.isUserInteractionEnabled = self.numberWillBeModified
         self.textFieldPaidTotal.isEnabled = self.numberWillBeModified
         self.textFieldPaidTotal.isUserInteractionEnabled = self.numberWillBeModified
-        self.textFieldPaidTotal.text = self.numberWillBeModified ? "" : "$\(self.number?.buyerInformation.paidQuantity ?? 0.0)"
+        self.textFieldPaidTotal.text = self.numberWillBeModified ? "" : "$\(self.viewModel?.number.buyerInformation.paidQuantity ?? 0.0)"
         self.switchUserDidPayTotal.isEnabled = self.numberWillBeModified
         self.switchUserDidPayTotal.isUserInteractionEnabled = self.numberWillBeModified
     }
     
     
     func configureNumberComponents() {
-        if let number = self.number {
+        if let number = self.viewModel?.number {
             self.labelNumber.text = "\(number.buyerInformation.selectedNumber)"
             let dominantColor: CGColor = number.state.colorValue.cgColor
             self.labelStatus.text = number.state.statusValue
@@ -115,43 +118,74 @@ class BuyerScreenVC: UIViewController {
         self.viewPaidTotal.layer.borderWidth = 0.5
         self.viewPaidTotal.layer.cornerRadius = 12
         self.textFieldPaidTotal.keyboardType = .decimalPad
-        self.textFieldBuyerName.text = self.number?.buyerInformation.name
-        self.textFieldPaidTotal.text = "$\(self.number?.buyerInformation.paidQuantity ?? 0.0)"
+        self.textFieldBuyerName.text = self.viewModel?.number.buyerInformation.name
+        self.textFieldPaidTotal.text = "$\(self.viewModel?.number.buyerInformation.paidQuantity ?? 0.0)"
     }
     
     @IBAction func modifyData(_ sender: Any) {
-        if let number = self.number,
-           let row = indexPath?.row {
+        if self.fieldsAreFilled() {
+            self.buttonModifyData.loadingIndicator(true)
             self.buttonModifyData.isEnabled = false
-            //If switch is on, then user paid total amount
-            if self.switchUserDidPayTotal.isOn {
+            if let number = self.viewModel?.number,
+               let row = self.viewModel?.index.row {
+                self.buttonModifyData.isEnabled = false
+                if self.switchUserDidPayTotal.isOn {
+                    Task {
+                        let newNumber = AssignedNumber(state: .paid, buyerInformation: number.buyerInformation)
+                        await self.viewModel?.updateNumber(number: newNumber, index: row, completion: {
+                            self.didUpdateNumber?(newNumber)
+                            self.navigationController?.popViewController(animated: true)
+                        })
+                    }
+                    return
+                }
                 Task {
-                    let newNumber = AssignedNumber(state: .paid, buyerInformation: number.buyerInformation)
-                    await FirestoreHandler.updateNumber(with: row, of: newNumber)
-                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    let totalPaid = Double(self.textFieldPaidTotal.text ?? "0.0") ?? 0.0
+                    let name = self.textFieldBuyerName.text ?? ""
+                    let newNumber = AssignedNumber(state: totalPaid > 0 ? .partialPaid : .nonPaid,
+                                                   buyerInformation: BuyerInformation(name: name,
+                                                                                      selectedNumber: number.buyerInformation.selectedNumber,
+                                                                                      paidQuantity: totalPaid))
+                    await self.viewModel?.updateNumber(number: newNumber, index: row, completion: {
                         self.didUpdateNumber?(newNumber)
                         self.navigationController?.popViewController(animated: true)
-                    }
-                }
-                return
-            }
-            Task {
-                let newNumber = AssignedNumber(state: Double(self.textFieldPaidTotal.text ?? "0.0") ?? 0.0 > 0 ? .partialPaid : .nonPaid, buyerInformation:
-                                                BuyerInformation(name: self.textFieldBuyerName.text ?? "",
-                                                                 selectedNumber: number.buyerInformation.selectedNumber,
-                                                                 paidQuantity: Double(self.textFieldPaidTotal.text ?? "0.0") ?? 0.0))
-                await FirestoreHandler.updateNumber(with: row, of: newNumber)
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    self.didUpdateNumber?(newNumber)
-                    self.navigationController?.popViewController(animated: true)
+                    })
                 }
             }
+        } else {
+            self.buttonModifyData.loadingIndicator(false)
+            self.buttonModifyData.isEnabled = true
+        }
+    }
+    
+    func fieldsAreFilled() -> Bool {
+        guard let name = self.textFieldBuyerName.text,
+           name.count > 0 else {
+            self.showErrorAlert(with: "El campo de nombre está vacío")
+            return false
+        }
+        if !self.switchUserDidPayTotal.isOn {
+            guard let quantity = self.textFieldPaidTotal.text,
+                  quantity.count > 0 else {
+                self.showErrorAlert(with: "El campo de total está vacío")
+                return false
+            }
+        }
+        return true
+    }
+    
+    func showErrorAlert(with error: String) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Cerrar", style: .destructive, handler: { _ in
+                alertController.dismiss(animated: true)
+            }))
+            self.present(alertController, animated: true)
         }
     }
 }
 
 extension BuyerScreenVC: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.textFieldBuyerName {
             self.textFieldPaidTotal.becomeFirstResponder()
@@ -159,5 +193,29 @@ extension BuyerScreenVC: UITextFieldDelegate {
         }
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension UIButton {
+    func loadingIndicator(_ show: Bool) {
+        let tag = 808404
+        if show {
+            self.isEnabled = false
+            self.alpha = 0.5
+            let indicator = UIActivityIndicatorView()
+            let buttonHeight = self.bounds.size.height
+            let buttonWidth = self.bounds.size.width
+            indicator.center = CGPoint(x: buttonWidth/2, y: buttonHeight/2)
+            indicator.tag = tag
+            self.addSubview(indicator)
+            indicator.startAnimating()
+        } else {
+            self.isEnabled = true
+            self.alpha = 1.0
+            if let indicator = self.viewWithTag(tag) as? UIActivityIndicatorView {
+                indicator.stopAnimating()
+                indicator.removeFromSuperview()
+            }
+        }
     }
 }
