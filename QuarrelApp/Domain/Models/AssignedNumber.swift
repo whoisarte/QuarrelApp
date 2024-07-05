@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AssignedNumber: Codable {
+class AssignedNumber: Codable {
     static let localNumbersIdentifier: String = "localNumbersIdentifier"
     var state: CurrentNumberState
     let buyerInformation: BuyerInformation
@@ -17,7 +17,7 @@ struct AssignedNumber: Codable {
         self.buyerInformation = buyerInformation
     }
     
-    mutating func changeStatus(to status: CurrentNumberState) {
+    func changeStatus(to status: CurrentNumberState) {
         self.state = status
     }
     

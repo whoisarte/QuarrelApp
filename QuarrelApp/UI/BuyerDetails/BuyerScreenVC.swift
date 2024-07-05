@@ -131,7 +131,9 @@ class BuyerScreenVC: UIViewController {
                 self.buttonModifyData.isEnabled = false
                 if self.switchUserDidPayTotal.isOn {
                     Task {
-                        let newNumber = AssignedNumber(state: .paid, buyerInformation: number.buyerInformation)
+                        let name = self.fieldsAreFilled() ? self.textFieldBuyerName.text ?? number.buyerInformation.name : number.buyerInformation.name
+                        let quantity = self.fieldsAreFilled() ? Double(self.textFieldPaidTotal.text ?? "0.0") ?? 0.0 : number.buyerInformation.paidQuantity
+                        let newNumber = AssignedNumber(state: .paid, buyerInformation: BuyerInformation(name: name, selectedNumber: number.buyerInformation.selectedNumber, paidQuantity: quantity))
                         await self.viewModel?.updateNumber(number: newNumber, index: row, completion: {
                             self.didUpdateNumber?(newNumber)
                             self.navigationController?.popViewController(animated: true)
