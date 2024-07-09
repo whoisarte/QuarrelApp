@@ -40,6 +40,7 @@ class BuyerScreenVC: UIViewController {
         super.viewDidLoad()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resignKeyboard)))
         self.buttonModifyData.isHidden = !self.numberWillBeModified
+        self.checkIfItIsAlreadyPaid()
         self.configureNumberComponents()
         self.configureFields()
         self.checkFields()
@@ -88,6 +89,15 @@ class BuyerScreenVC: UIViewController {
         self.switchUserDidPayTotal.isUserInteractionEnabled = self.numberWillBeModified
     }
     
+    func checkIfItIsAlreadyPaid() {
+        if let number = self.viewModel?.number,
+           number.state == .paid {
+            DispatchQueue.main.async {
+                self.switchUserDidPayTotal.isOn = true
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+        }
+    }
     
     func configureNumberComponents() {
         if let number = self.viewModel?.number {
