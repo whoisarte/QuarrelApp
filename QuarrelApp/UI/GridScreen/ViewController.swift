@@ -48,6 +48,14 @@ class ViewController: UIViewController {
     }
     
     func configureBarButton() {
+        let layoutButton = UIBarButtonItem(image: UIImage(systemName: "circle.grid.2x2.fill"), menu: self.getLayoutMenu())
+        layoutButton.tintColor = self.navigationController?.navigationBar.barTintColor
+        let sortButton = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"), menu: self.getSortMenu())
+        sortButton.tintColor = self.navigationController?.navigationBar.barTintColor
+        self.navigationItem.rightBarButtonItems = [layoutButton, sortButton]
+    }
+    
+    func getLayoutMenu() -> UIMenu {
         let list = UIAction(title: "Lista", image: UIImage(systemName: "list.bullet"), identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
             self.layoutType = .list
         }
@@ -56,15 +64,35 @@ class ViewController: UIViewController {
             self.layoutType = .grid
         }
         
-        let menu = UIMenu(title: "Ver como",
+        return UIMenu(title: "Ver como",
                           image: nil,
                           identifier: nil,
                           options: .displayInline,
                           preferredElementSize: .automatic,
                           children: [list, grid])
-        let button = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"), menu: menu)
-        button.tintColor = self.navigationController?.navigationBar.barTintColor
-        self.navigationItem.rightBarButtonItem = button
+    }
+    
+    func getSortMenu() -> UIMenu {
+        let resetToDefault = UIAction(title: "Sin ordenar", image: nil, identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
+            self.viewModel.sortNumbers(by: .nonSelected)
+        }
+        let byPaid = UIAction(title: "Pagado", image: nil, identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
+            self.viewModel.sortNumbers(by: .paid)
+        }
+        let byPartialPaid = UIAction(title: "Pagado parcial", image: nil, identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
+            self.viewModel.sortNumbers(by: .partialPaid)
+        }
+        
+        let byNonPaid = UIAction(title: "Sin pagar", image: nil, identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
+            self.viewModel.sortNumbers(by: .nonPaid)
+        }
+        
+        return UIMenu(title: "Ordenar por",
+                          image: nil,
+                          identifier: nil,
+                          options: .displayInline,
+                          preferredElementSize: .automatic,
+                          children: [byPaid, byPartialPaid, byNonPaid, resetToDefault])
     }
     
     func configureCollectionView() {
