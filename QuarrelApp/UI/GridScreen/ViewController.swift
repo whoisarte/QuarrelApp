@@ -14,6 +14,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     internal var viewModel: AssignedNumbersViewModel = AssignedNumbersViewModel()
+    var layoutType: NumbersLayoutType = .grid {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
 //    func setViewModel(viewModel: AssignedNumbersViewModel) {
 //        self.viewModel = viewModel
 //    }
@@ -34,13 +41,37 @@ class ViewController: UIViewController {
         self.navigationItem.title = "Lista de números"
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.barTintColor = .systemPink
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.configureBarButton()
+    }
+    
+    func configureBarButton() {
+        let list = UIAction(title: "Lista", image: UIImage(systemName: "list.bullet"), identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
+            self.layoutType = .list
+        }
+        
+        let grid = UIAction(title: "Cuadrícula", image: UIImage(systemName: "circle.grid.2x2.fill"), identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
+            self.layoutType = .grid
+        }
+        
+        let menu = UIMenu(title: "Ver como",
+                          image: nil,
+                          identifier: nil,
+                          options: .displayInline,
+                          preferredElementSize: .automatic,
+                          children: [list, grid])
+        let button = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"), menu: menu)
+        button.tintColor = self.navigationController?.navigationBar.barTintColor
+        self.navigationItem.rightBarButtonItem = button
     }
     
     func configureCollectionView() {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: AssignedNumberCell.identifier, bundle: nil), forCellWithReuseIdentifier: AssignedNumberCell.identifier)
+        self.collectionView.register(UINib(nibName: ListAssignedNumberCell.identifier, bundle: nil), forCellWithReuseIdentifier: ListAssignedNumberCell.identifier)
         self.collectionView.contentInset = UIEdgeInsets(top: 10.0, left: 5.0, bottom: 1.0, right: 5.0)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -140,10 +171,20 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: AssignedNumberCell.identifier, for: indexPath) as? AssignedNumberCell {
-            let number = self.viewModel.getNumbers()[indexPath.row]
-            cell.configureCell(with: number.state, number: "\(number.buyerInformation.selectedNumber)")
-            return cell
+        switch self.layoutType {
+            
+        case .grid:
+            if let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: AssignedNumberCell.identifier, for: indexPath) as? AssignedNumberCell {
+                let number = self.viewModel.getNumbers()[indexPath.row]
+                cell.configureCell(with: number.state, number: "\(number.buyerInformation.selectedNumber)")
+                return cell
+            }
+        case .list:
+            if let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: ListAssignedNumberCell.identifier, for: indexPath) as? ListAssignedNumberCell {
+                let number = self.viewModel.getNumbers()[indexPath.row]
+                cell.configureListCell(with: "\(number.buyerInformation.selectedNumber)", buyer: number.buyerInformation.name, currentNumberState: number.state)
+                return cell
+            }
         }
         return UICollectionViewCell()
     }
@@ -158,6 +199,15 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 1.0, left: 8.0, bottom: 1.0, right: 8.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch self.layoutType {
+        case .grid:
+            return CGSize(width: 45.0, height: 45.0)
+        case .list:
+            return CGSize(width: self.collectionView.frame.size.width, height: 55.0)
+        }
     }
 }
 

@@ -17,13 +17,13 @@ enum CurrentNumberState: String, Codable {
     var colorValue: UIColor {
         switch self {
         case .paid:
-            return UIColor.systemGreen
+            return .systemGreen
         case .partialPaid:
-            return UIColor.systemOrange
+            return .systemOrange
         case .nonPaid:
-            return UIColor.systemRed
+            return .systemRed
         case .nonSelected:
-            return UIColor.systemPink
+            return .systemPink
         }
     }
     

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C42934E2C3D0A5300213326 /* ListAssignedNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C42934D2C3D0A5300213326 /* ListAssignedNumberCell.xib */; };
+		0C42934F2C3D0A5300213326 /* ListAssignedNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C42934C2C3D0A5300213326 /* ListAssignedNumberCell.swift */; };
+		0C4293512C3D0D5C00213326 /* NumbersLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4293502C3D0D5C00213326 /* NumbersLayoutType.swift */; };
 		0C4B35AD2C3489FF0057416E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B35AC2C3489FF0057416E /* AppDelegate.swift */; };
 		0C4B35AF2C3489FF0057416E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B35AE2C3489FF0057416E /* SceneDelegate.swift */; };
 		0C4B35B42C3489FF0057416E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B35B32C3489FF0057416E /* Base */; };
@@ -23,12 +26,14 @@
 		0CBBE9492C34B8940074627C /* BuyerScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9482C34B8940074627C /* BuyerScreenVC.swift */; };
 		0CBBE94C2C35C9B40074627C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBE94A2C35C9B40074627C /* GoogleService-Info.plist */; };
 		0CBBE94F2C35D0860074627C /* FirestoreHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE94E2C35D0860074627C /* FirestoreHandler.swift */; };
-		0CBBE9562C3679220074627C /* PriceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9552C3679220074627C /* PriceConstants.swift */; };
 		0CBBE9582C38A6100074627C /* BuyerInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9572C38A6100074627C /* BuyerInformationViewModel.swift */; };
 		C3784913551B8E9A0961F357 /* Pods_QuarrelApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 672427673E383756C3F3FA6E /* Pods_QuarrelApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C42934C2C3D0A5300213326 /* ListAssignedNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAssignedNumberCell.swift; sourceTree = "<group>"; };
+		0C42934D2C3D0A5300213326 /* ListAssignedNumberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListAssignedNumberCell.xib; sourceTree = "<group>"; };
+		0C4293502C3D0D5C00213326 /* NumbersLayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersLayoutType.swift; sourceTree = "<group>"; };
 		0C4B35A92C3489FF0057416E /* QuarrelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuarrelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4B35AC2C3489FF0057416E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C4B35AE2C3489FF0057416E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +52,6 @@
 		0CBBE9482C34B8940074627C /* BuyerScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerScreenVC.swift; sourceTree = "<group>"; };
 		0CBBE94A2C35C9B40074627C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0CBBE94E2C35D0860074627C /* FirestoreHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHandler.swift; sourceTree = "<group>"; };
-		0CBBE9552C3679220074627C /* PriceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceConstants.swift; sourceTree = "<group>"; };
 		0CBBE9572C38A6100074627C /* BuyerInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerInformationViewModel.swift; sourceTree = "<group>"; };
 		54D158211FDDF3433E217F6B /* Pods-QuarrelApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuarrelApp.debug.xcconfig"; path = "Target Support Files/Pods-QuarrelApp/Pods-QuarrelApp.debug.xcconfig"; sourceTree = "<group>"; };
 		672427673E383756C3F3FA6E /* Pods_QuarrelApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuarrelApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +91,6 @@
 		0C4B35AB2C3489FF0057416E /* QuarrelApp */ = {
 			isa = PBXGroup;
 			children = (
-				0CBBE9532C3679140074627C /* Utilities */,
 				0CBBE94A2C35C9B40074627C /* GoogleService-Info.plist */,
 				0CBBE93F2C34B8570074627C /* UI */,
 				0CBBE92A2C34A3FC0074627C /* Architecture */,
@@ -140,6 +143,8 @@
 			children = (
 				0CBBE9342C34B8570074627C /* AssignedNumberCell.swift */,
 				0CBBE9352C34B8570074627C /* AssignedNumberCell.xib */,
+				0C42934C2C3D0A5300213326 /* ListAssignedNumberCell.swift */,
+				0C42934D2C3D0A5300213326 /* ListAssignedNumberCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				0CBBE9372C34B8570074627C /* CurrentNumberState.swift */,
+				0C4293502C3D0D5C00213326 /* NumbersLayoutType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -196,22 +202,6 @@
 				0CBBE9572C38A6100074627C /* BuyerInformationViewModel.swift */,
 			);
 			path = BuyerDetails;
-			sourceTree = "<group>";
-		};
-		0CBBE9532C3679140074627C /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				0CBBE9542C3679180074627C /* Constants */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		0CBBE9542C3679180074627C /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				0CBBE9552C3679220074627C /* PriceConstants.swift */,
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		67F6EB1124EA32E99E15B1B9 /* Frameworks */ = {
@@ -291,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C42934E2C3D0A5300213326 /* ListAssignedNumberCell.xib in Resources */,
 				0C4B35B62C348A010057416E /* Assets.xcassets in Resources */,
 				0C4B35B92C348A010057416E /* Base in Resources */,
 				0CBBE94C2C35C9B40074627C /* GoogleService-Info.plist in Resources */,
@@ -352,15 +343,16 @@
 				0CBBE9402C34B8570074627C /* AssignedNumberCell.swift in Sources */,
 				0CBBE9432C34B8570074627C /* OnChangeNumberStatus.swift in Sources */,
 				0CBBE9582C38A6100074627C /* BuyerInformationViewModel.swift in Sources */,
+				0C42934F2C3D0A5300213326 /* ListAssignedNumberCell.swift in Sources */,
 				0CBBE9452C34B8570074627C /* ViewController.swift in Sources */,
 				0CBBE94F2C35D0860074627C /* FirestoreHandler.swift in Sources */,
 				0CBBE9492C34B8940074627C /* BuyerScreenVC.swift in Sources */,
+				0C4293512C3D0D5C00213326 /* NumbersLayoutType.swift in Sources */,
 				0CBBE9262C34A1670074627C /* BuyerInformation.swift in Sources */,
 				0C4B35AD2C3489FF0057416E /* AppDelegate.swift in Sources */,
 				0CBBE9442C34B8570074627C /* AssignedNumbersViewModel.swift in Sources */,
 				0CBBE9242C34A1440074627C /* AssignedNumber.swift in Sources */,
 				0C4B35AF2C3489FF0057416E /* SceneDelegate.swift in Sources */,
-				0CBBE9562C3679220074627C /* PriceConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
