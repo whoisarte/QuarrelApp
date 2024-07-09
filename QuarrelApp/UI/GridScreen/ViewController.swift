@@ -109,17 +109,31 @@ class ViewController: UIViewController {
     }
     
     func navigateToBuyerDetailsWithNumber(number: AssignedNumber, at index: IndexPath) {
-        if let vc = UIStoryboard(name: BuyerScreenVC.storyboard, bundle: nil)
-            .instantiateViewController(withIdentifier: BuyerScreenVC.identifier) as? BuyerScreenVC {
-            let number = self.viewModel.getNumber(at: index.row)
-            vc.setViewModel(viewModel: BuyerInformationViewModel(number: number, index: index))
-            vc.didUpdateNumber = { [weak self] number in
-                self?.viewModel.modifyNumberWithNewOne(at: index, with: number)
-            }
+        if self.viewModel.currentSortType != .nonSelected {
+            let alert = UIAlertController(title: "Error", message: "Remueve el ordenamiento actual.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Entendido", style: .destructive, handler: { _ in
+                alert.dismiss(animated: true)
+            }))
             DispatchQueue.main.async {
-                self.navigationController?.navigationBar.prefersLargeTitles = false
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    self.navigationController?.pushViewController(vc, animated: true)
+                self.present(alert, animated: true)
+            }
+            return
+        }
+        DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                if let vc = UIStoryboard(name: BuyerScreenVC.storyboard, bundle: nil)
+                    .instantiateViewController(withIdentifier: BuyerScreenVC.identifier) as? BuyerScreenVC {
+                    let number = self.viewModel.getNumber(at: index.row)
+                    vc.setViewModel(viewModel: BuyerInformationViewModel(number: number, index: index))
+                    vc.didUpdateNumber = { [weak self] number in
+                        self?.viewModel.modifyNumberWithNewOne(at: index, with: number)
+                    }
+                    DispatchQueue.main.async {
+                        self.navigationController?.navigationBar.prefersLargeTitles = false
+                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
                 }
             }
         }

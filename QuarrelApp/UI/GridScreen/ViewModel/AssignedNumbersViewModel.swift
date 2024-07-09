@@ -27,6 +27,7 @@ class AssignedNumbersViewModel {
             self.onChangedNumberStatusDelegate?.onRetrieveNumbers()
         }
     }
+    var currentSortType: CurrentNumberState? = .nonSelected
     
     init() {
         Task {
@@ -39,6 +40,7 @@ class AssignedNumbersViewModel {
     }
     
     func getShowableItems(sortedBy sortType: CurrentNumberState = .nonSelected) {
+        self.currentSortType = sortType
         self.showableNumbers = self.getSortedNumbers(by: sortType)
     }
     
@@ -67,6 +69,7 @@ class AssignedNumbersViewModel {
     }
     
     func sortNumbers(by type: CurrentNumberState) {
+        self.currentSortType = type
         self.showableNumbers = self.getSortedNumbers(by: type)
     }
     
