@@ -10,6 +10,7 @@
 		0C42934E2C3D0A5300213326 /* ListAssignedNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C42934D2C3D0A5300213326 /* ListAssignedNumberCell.xib */; };
 		0C42934F2C3D0A5300213326 /* ListAssignedNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C42934C2C3D0A5300213326 /* ListAssignedNumberCell.swift */; };
 		0C4293512C3D0D5C00213326 /* NumbersLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4293502C3D0D5C00213326 /* NumbersLayoutType.swift */; };
+		0C42936A2C3F03F400213326 /* NumbersSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4293692C3F03F400213326 /* NumbersSortType.swift */; };
 		0C4B35AD2C3489FF0057416E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B35AC2C3489FF0057416E /* AppDelegate.swift */; };
 		0C4B35AF2C3489FF0057416E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4B35AE2C3489FF0057416E /* SceneDelegate.swift */; };
 		0C4B35B42C3489FF0057416E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B35B32C3489FF0057416E /* Base */; };
@@ -34,6 +35,7 @@
 		0C42934C2C3D0A5300213326 /* ListAssignedNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAssignedNumberCell.swift; sourceTree = "<group>"; };
 		0C42934D2C3D0A5300213326 /* ListAssignedNumberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListAssignedNumberCell.xib; sourceTree = "<group>"; };
 		0C4293502C3D0D5C00213326 /* NumbersLayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersLayoutType.swift; sourceTree = "<group>"; };
+		0C4293692C3F03F400213326 /* NumbersSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersSortType.swift; sourceTree = "<group>"; };
 		0C4B35A92C3489FF0057416E /* QuarrelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuarrelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4B35AC2C3489FF0057416E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C4B35AE2C3489FF0057416E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				0CBBE9372C34B8570074627C /* CurrentNumberState.swift */,
 				0C4293502C3D0D5C00213326 /* NumbersLayoutType.swift */,
+				0C4293692C3F03F400213326 /* NumbersSortType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CBBE9422C34B8570074627C /* CurrentNumberState.swift in Sources */,
+				0C42936A2C3F03F400213326 /* NumbersSortType.swift in Sources */,
 				0CBBE9402C34B8570074627C /* AssignedNumberCell.swift in Sources */,
 				0CBBE9432C34B8570074627C /* OnChangeNumberStatus.swift in Sources */,
 				0CBBE9582C38A6100074627C /* BuyerInformationViewModel.swift in Sources */,

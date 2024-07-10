@@ -27,7 +27,7 @@ class AssignedNumbersViewModel {
             self.onChangedNumberStatusDelegate?.onRetrieveNumbers()
         }
     }
-    var currentSortType: CurrentNumberState? = .nonSelected
+    var currentSortType: NumbersSortType? = .nonSelected
     
     init() {
         Task {
@@ -39,12 +39,12 @@ class AssignedNumbersViewModel {
         return self.showableNumbers
     }
     
-    func getShowableItems(sortedBy sortType: CurrentNumberState = .nonSelected) {
+    func getShowableItems(sortedBy sortType: NumbersSortType = .nonSelected) {
         self.currentSortType = sortType
         self.showableNumbers = self.getSortedNumbers(by: sortType)
     }
     
-    func getSortedNumbers(by sortType: CurrentNumberState) -> [AssignedNumber] {
+    func getSortedNumbers(by sortType: NumbersSortType) -> [AssignedNumber] {
         var temporaryNumbers = self.numbers
         switch sortType {
         case .paid:
@@ -62,13 +62,17 @@ class AssignedNumbersViewModel {
             temporaryNumbers.removeAll(where: { $0.state == .nonPaid })
             temporaryNumbers.insert(contentsOf: nonPaidItems, at: 0)
             return temporaryNumbers
+        case .free:
+            let freeItems = temporaryNumbers.filter({ $0.state == .nonSelected })
+            temporaryNumbers.removeAll(where: { $0.state == .nonSelected })
+            temporaryNumbers.insert(contentsOf: freeItems, at: 0)
+            return temporaryNumbers
         case .nonSelected:
             return self.numbers
         }
-        return []
     }
     
-    func sortNumbers(by type: CurrentNumberState) {
+    func sortNumbers(by type: NumbersSortType) {
         self.currentSortType = type
         self.showableNumbers = self.getSortedNumbers(by: type)
     }

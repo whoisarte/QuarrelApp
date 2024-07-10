@@ -87,12 +87,16 @@ class ViewController: UIViewController {
             self.viewModel.sortNumbers(by: .nonPaid)
         }
         
+        let byFree = UIAction(title: "Disponibles", image: nil, identifier: nil, discoverabilityTitle: nil,attributes: .keepsMenuPresented, state: .off) { (_) in
+            self.viewModel.sortNumbers(by: .free)
+        }
+        
         return UIMenu(title: "Ordenar por",
                           image: nil,
                           identifier: nil,
                           options: .displayInline,
                           preferredElementSize: .automatic,
-                          children: [byPaid, byPartialPaid, byNonPaid, resetToDefault])
+                          children: [byPaid, byPartialPaid, byNonPaid, byFree, resetToDefault])
     }
     
     func configureCollectionView() {
@@ -119,20 +123,17 @@ class ViewController: UIViewController {
             }
             return
         }
-        DispatchQueue.main.async {
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                if let vc = UIStoryboard(name: BuyerScreenVC.storyboard, bundle: nil)
-                    .instantiateViewController(withIdentifier: BuyerScreenVC.identifier) as? BuyerScreenVC {
-                    let number = self.viewModel.getNumber(at: index.row)
-                    vc.setViewModel(viewModel: BuyerInformationViewModel(number: number, index: index))
-                    vc.didUpdateNumber = { [weak self] number in
-                        self?.viewModel.modifyNumberWithNewOne(at: index, with: number)
-                    }
-                    DispatchQueue.main.async {
-                        self.navigationController?.navigationBar.prefersLargeTitles = false
-                        DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            if let vc = UIStoryboard(name: BuyerScreenVC.storyboard, bundle: nil)
+                .instantiateViewController(withIdentifier: BuyerScreenVC.identifier) as? BuyerScreenVC {
+                let number = self.viewModel.getNumber(at: index.row)
+                vc.setViewModel(viewModel: BuyerInformationViewModel(number: number, index: index))
+                vc.didUpdateNumber = { [weak self] number in
+                    self?.viewModel.modifyNumberWithNewOne(at: index, with: number)
+                }
+                DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }
             }
@@ -141,7 +142,6 @@ class ViewController: UIViewController {
 }
 
 //MARK: Extension to reload sections in collectionView
-
 extension ViewController: OnChangedNumberStatus {
     func onChangedNumberStatus(at index: IndexPath) {
         DispatchQueue.main.async {
