@@ -58,6 +58,7 @@ class FirestoreHandler {
     
     static func getNumbers() async -> [AssignedNumber] {
         var numbers: [AssignedNumber] = []
+        var ids: [String] = []
         do {
             let querySnapshot = try await FirestoreHandler.instance.collection("AssignedNumbers").getDocuments()
             if querySnapshot.documents.count == 0 {
@@ -78,7 +79,9 @@ class FirestoreHandler {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let number = try decoder.decode(AssignedNumber.self, from: json)
                 numbers.append(number)
+                ids.append(document.documentID)
             }
+            FirestoreHandler.saveIds(ids: ids)
             numbers.sort(by: { $0.buyerInformation.selectedNumber < $1.buyerInformation.selectedNumber })
             return numbers
         } catch {
