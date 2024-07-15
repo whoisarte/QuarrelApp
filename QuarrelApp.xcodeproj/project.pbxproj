@@ -16,6 +16,9 @@
 		0C4B35B42C3489FF0057416E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B35B32C3489FF0057416E /* Base */; };
 		0C4B35B62C348A010057416E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B35B52C348A010057416E /* Assets.xcassets */; };
 		0C4B35B92C348A010057416E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B35B82C348A010057416E /* Base */; };
+		0C5C7F4C2C44F77400E2EADC /* ViewContoller+OnChangedNumberStatusExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C7F4B2C44F77400E2EADC /* ViewContoller+OnChangedNumberStatusExtension.swift */; };
+		0C5C7F4E2C44F7AB00E2EADC /* ViewController+UIContextMenuConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C7F4D2C44F7AB00E2EADC /* ViewController+UIContextMenuConfigurationExtension.swift */; };
+		0C5C7F502C44F7D900E2EADC /* ViewController+UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5C7F4F2C44F7D900E2EADC /* ViewController+UICollectionViewExtension.swift */; };
 		0CBBE9242C34A1440074627C /* AssignedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9232C34A1440074627C /* AssignedNumber.swift */; };
 		0CBBE9262C34A1670074627C /* BuyerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9252C34A1670074627C /* BuyerInformation.swift */; };
 		0CBBE9402C34B8570074627C /* AssignedNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBE9342C34B8570074627C /* AssignedNumberCell.swift */; };
@@ -43,6 +46,9 @@
 		0C4B35B52C348A010057416E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C4B35B82C348A010057416E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C4B35BA2C348A010057416E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C5C7F4B2C44F77400E2EADC /* ViewContoller+OnChangedNumberStatusExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewContoller+OnChangedNumberStatusExtension.swift"; sourceTree = "<group>"; };
+		0C5C7F4D2C44F7AB00E2EADC /* ViewController+UIContextMenuConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UIContextMenuConfigurationExtension.swift"; sourceTree = "<group>"; };
+		0C5C7F4F2C44F7D900E2EADC /* ViewController+UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UICollectionViewExtension.swift"; sourceTree = "<group>"; };
 		0CBBE9232C34A1440074627C /* AssignedNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignedNumber.swift; sourceTree = "<group>"; };
 		0CBBE9252C34A1670074627C /* BuyerInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerInformation.swift; sourceTree = "<group>"; };
 		0CBBE9342C34B8570074627C /* AssignedNumberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignedNumberCell.swift; sourceTree = "<group>"; };
@@ -105,6 +111,17 @@
 				0C4B35BA2C348A010057416E /* Info.plist */,
 			);
 			path = QuarrelApp;
+			sourceTree = "<group>";
+		};
+		0C5C7F4A2C44F75A00E2EADC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0CBBE93D2C34B8570074627C /* ViewController.swift */,
+				0C5C7F4B2C44F77400E2EADC /* ViewContoller+OnChangedNumberStatusExtension.swift */,
+				0C5C7F4D2C44F7AB00E2EADC /* ViewController+UIContextMenuConfigurationExtension.swift */,
+				0C5C7F4F2C44F7D900E2EADC /* ViewController+UICollectionViewExtension.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		0CBBE9212C34A12C0074627C /* Domain */ = {
@@ -180,11 +197,11 @@
 		0CBBE93E2C34B8570074627C /* GridScreen */ = {
 			isa = PBXGroup;
 			children = (
+				0C5C7F4A2C44F75A00E2EADC /* ViewController */,
 				0CBBE9362C34B8570074627C /* Cells */,
 				0CBBE9382C34B8570074627C /* Enum */,
 				0CBBE93A2C34B8570074627C /* Protocol */,
 				0CBBE93C2C34B8570074627C /* ViewModel */,
-				0CBBE93D2C34B8570074627C /* ViewController.swift */,
 			);
 			path = GridScreen;
 			sourceTree = "<group>";
@@ -347,8 +364,11 @@
 				0CBBE9402C34B8570074627C /* AssignedNumberCell.swift in Sources */,
 				0CBBE9432C34B8570074627C /* OnChangeNumberStatus.swift in Sources */,
 				0CBBE9582C38A6100074627C /* BuyerInformationViewModel.swift in Sources */,
+				0C5C7F502C44F7D900E2EADC /* ViewController+UICollectionViewExtension.swift in Sources */,
 				0C42934F2C3D0A5300213326 /* ListAssignedNumberCell.swift in Sources */,
+				0C5C7F4C2C44F77400E2EADC /* ViewContoller+OnChangedNumberStatusExtension.swift in Sources */,
 				0CBBE9452C34B8570074627C /* ViewController.swift in Sources */,
+				0C5C7F4E2C44F7AB00E2EADC /* ViewController+UIContextMenuConfigurationExtension.swift in Sources */,
 				0CBBE94F2C35D0860074627C /* FirestoreHandler.swift in Sources */,
 				0CBBE9492C34B8940074627C /* BuyerScreenVC.swift in Sources */,
 				0C4293512C3D0D5C00213326 /* NumbersLayoutType.swift in Sources */,

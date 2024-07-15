@@ -27,6 +27,7 @@ class BuyerScreenVC: UIViewController {
         self.viewModel = viewModel
     }
     
+    var index: IndexPath?
     var didUpdateNumber: ((AssignedNumber) -> Void)?
     var numberWillBeModified: Bool = false {
         didSet {
@@ -136,15 +137,19 @@ class BuyerScreenVC: UIViewController {
         if self.fieldsAreFilled() {
             self.buttonModifyData.loadingIndicator(true)
             self.buttonModifyData.isEnabled = false
-            if let number = self.viewModel?.number,
-               let row = self.viewModel?.index.row {
+            if let number = self.viewModel?.number {
                 self.buttonModifyData.isEnabled = false
                 if self.switchUserDidPayTotal.isOn {
                     Task {
                         let name = self.fieldsAreFilled() ? self.textFieldBuyerName.text ?? number.buyerInformation.name : number.buyerInformation.name
-                        let quantity = self.fieldsAreFilled() ? Double(self.textFieldPaidTotal.text ?? "0.0") ?? 0.0 : number.buyerInformation.paidQuantity
+                        let quantity = 100.0
                         let newNumber = AssignedNumber(state: .paid, buyerInformation: BuyerInformation(name: name, selectedNumber: number.buyerInformation.selectedNumber, paidQuantity: quantity))
-                        await self.viewModel?.updateNumber(number: newNumber, index: row, completion: {
+                        newNumber.documentID = number.getDocumentId()
+                        self.viewModel?.updateNumber(number: newNumber, completion: { error in
+                            if let error {
+                                print("Error updating document: \(error)")
+                                return
+                            }
                             self.didUpdateNumber?(newNumber)
                             self.navigationController?.popViewController(animated: true)
                         })
@@ -158,7 +163,12 @@ class BuyerScreenVC: UIViewController {
                                                    buyerInformation: BuyerInformation(name: name,
                                                                                       selectedNumber: number.buyerInformation.selectedNumber,
                                                                                       paidQuantity: totalPaid))
-                    await self.viewModel?.updateNumber(number: newNumber, index: row, completion: {
+                    newNumber.documentID = number.getDocumentId()
+                    self.viewModel?.updateNumber(number: newNumber, completion: { error in
+                        if let error {
+                            print("Error updating document: \(error)")
+                            return
+                        }
                         self.didUpdateNumber?(newNumber)
                         self.navigationController?.popViewController(animated: true)
                     })

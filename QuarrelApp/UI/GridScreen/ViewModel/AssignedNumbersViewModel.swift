@@ -15,7 +15,11 @@ class AssignedNumbersViewModel {
             do {
                 let dataNumbers = try JSONEncoder().encode(numbers)
                 UserDefaults.standard.setValue(dataNumbers, forKey: self.dataNumberLocalRetrieveKey)
-                print("New products saved locally...")
+                if let data = UserDefaults.standard.data(forKey: self.dataNumberLocalRetrieveKey) {
+                    let data = String(data: data, encoding: .utf8) ?? ""
+                    print("New products saved locally...")
+                    print("\n\(data)\n")
+                }
             } catch {
                 print("Error saving products: \(error)")
             }
@@ -77,22 +81,27 @@ class AssignedNumbersViewModel {
         self.showableNumbers = self.getSortedNumbers(by: type)
     }
     
-    func modifyNumberWithNewOne(at index: IndexPath, with number: AssignedNumber) {
-        if self.showableNumbers.count > 0 &&
-            self.showableNumbers.indices.contains(index.row) {
-                self.numbers[index.row] = number
-                self.onChangedNumberStatusDelegate?.onChangedNumberStatus(at: index)
-            return
+    func modifyNumberWithNewOne(with number: AssignedNumber, at index: IndexPath) {
+        if let matchedIndex = self.showableNumbers.firstIndex(where: { $0.documentID == number.getDocumentId() }) {
+            self.showableNumbers[matchedIndex] = number
+            if let index = self.numbers.firstIndex(where: { $0.documentID == self.showableNumbers[matchedIndex].getDocumentId() }) {
+                self.numbers[index] = self.showableNumbers[matchedIndex]
             }
+            self.onChangedNumberStatusDelegate?.onChangedNumberStatus(at: index)
+            return
+        }
         print("Number can't be modified. Arrays is empty or doesn't contain index")
     }
     
-    func getNumber(at index: Int) -> AssignedNumber {
-        if self.showableNumbers.count > 0 &&
-            self.showableNumbers.indices.contains(index) {
-            return self.showableNumbers[index]
+    func getNumber(with id: String) -> AssignedNumber {
+        if let number = self.showableNumbers.first(where: {$0.documentID == id }) {
+            return number
         }
         return AssignedNumber(state: .nonSelected, buyerInformation: BuyerInformation(name: "", selectedNumber: 100000, paidQuantity: 0.0))
+    }
+    
+    func getSelectedNumber(at index: IndexPath) -> AssignedNumber {
+        return self.showableNumbers[index.row]
     }
     
     func changeNumberStatus(at index: IndexPath, to status: CurrentNumberState) async {
@@ -100,9 +109,15 @@ class AssignedNumbersViewModel {
         if self.showableNumbers.count > 0 &&
             self.showableNumbers.indices.contains(indx) {
             self.showableNumbers[indx].changeStatus(to: status)
-            self.onChangedNumberStatusDelegate?.onChangedNumberStatus(at: index)
-            //Verify index to update
-            await FirestoreHandler.updateNumber(with: indx, of: self.numbers[indx])
+            if let matchedNumber = self.numbers.first(where: { $0.getDocumentId() == self.showableNumbers[indx].getDocumentId() }) {
+                FirestoreHandler.updateNumber(with: matchedNumber) { [weak self] error in
+                    if let error {
+                        print("Error updating document: \(error)")
+                        return
+                    }
+                    self?.onChangedNumberStatusDelegate?.onChangedNumberStatus(at: index)
+                }
+            }
         }
     }
 }

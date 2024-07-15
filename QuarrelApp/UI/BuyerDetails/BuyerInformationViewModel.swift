@@ -9,17 +9,12 @@ import Foundation
 
 class BuyerInformationViewModel {
     let number: AssignedNumber
-    let index: IndexPath
     
-    init(number: AssignedNumber, index: IndexPath) {
+    init(number: AssignedNumber) {
         self.number = number
-        self.index = index
     }
     
-    func updateNumber(number: AssignedNumber, index: Int, completion: @escaping () -> Void) async {
-        await FirestoreHandler.updateNumber(with: index, of: number)
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            completion()
-        }
+    func updateNumber(number: AssignedNumber, completion: @escaping (Error?) -> Void) {
+        FirestoreHandler.updateNumber(with: number, completion: completion)
     }
 }
