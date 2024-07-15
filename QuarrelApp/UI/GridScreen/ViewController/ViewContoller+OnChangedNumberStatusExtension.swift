@@ -18,7 +18,6 @@ extension ViewController: OnChangedNumberStatus {
                     self.viewActivityIndicator.alpha = 0.0
                 } completion: { _ in
                     self.activityIndicator.stopAnimating()
-                    self.activityIndicator.removeFromSuperview()
                 }
             }
         }
