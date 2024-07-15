@@ -32,6 +32,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         self.navigateToBuyerDetailsWithNumber(number: self.viewModel.getSelectedNumber(at: indexPath), with: indexPath)
     }
  

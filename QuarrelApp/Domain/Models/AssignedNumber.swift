@@ -10,7 +10,7 @@ import Foundation
 class AssignedNumber: Codable {
     static let localNumbersIdentifier: String = "localNumbersIdentifier"
     var state: CurrentNumberState
-    let buyerInformation: BuyerInformation
+    var buyerInformation: BuyerInformation
     var documentID: String? = ""
     
     init(state: CurrentNumberState, buyerInformation: BuyerInformation) {
@@ -25,6 +25,10 @@ class AssignedNumber: Codable {
     
     func changeStatus(to status: CurrentNumberState) {
         self.state = status
+    }
+    
+    func setQuantity(quantity: Double) {
+        self.buyerInformation.paidQuantity = quantity
     }
     
     func getDocumentId() -> String {

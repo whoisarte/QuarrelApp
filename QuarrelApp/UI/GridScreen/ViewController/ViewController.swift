@@ -113,15 +113,15 @@ class ViewController: UIViewController {
     }
     
     func navigateToBuyerDetailsWithNumber(number: AssignedNumber, with index: IndexPath) {
-        if let vc = UIStoryboard(name: BuyerScreenVC.storyboard, bundle: nil)
-            .instantiateViewController(withIdentifier: BuyerScreenVC.identifier) as? BuyerScreenVC {
-            let number = self.viewModel.getNumber(with: number.getDocumentId())
-            vc.setViewModel(viewModel: BuyerInformationViewModel(number: number))
-            vc.index = index
-            vc.didUpdateNumber = { [weak self] number in
-                self?.viewModel.modifyNumberWithNewOne(with: number, at: index)
-            }
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let vc = UIStoryboard(name: BuyerScreenVC.storyboard, bundle: nil)
+                .instantiateViewController(withIdentifier: BuyerScreenVC.identifier) as? BuyerScreenVC {
+                let number = self.viewModel.getNumber(with: number.getDocumentId())
+                vc.setViewModel(viewModel: BuyerInformationViewModel(number: number))
+                vc.index = index
+                vc.didUpdateNumber = { [weak self] number in
+                    self?.viewModel.modifyNumberWithNewOne(with: number, at: index)
+                }
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }

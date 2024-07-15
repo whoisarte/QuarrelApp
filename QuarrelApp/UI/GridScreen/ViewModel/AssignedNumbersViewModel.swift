@@ -109,6 +109,9 @@ class AssignedNumbersViewModel {
         if self.showableNumbers.count > 0 &&
             self.showableNumbers.indices.contains(indx) {
             self.showableNumbers[indx].changeStatus(to: status)
+            if status == .paid {
+                self.showableNumbers[indx].setQuantity(quantity: 100.0)
+            }
             if let matchedNumber = self.numbers.first(where: { $0.getDocumentId() == self.showableNumbers[indx].getDocumentId() }) {
                 FirestoreHandler.updateNumber(with: matchedNumber) { [weak self] error in
                     if let error {
