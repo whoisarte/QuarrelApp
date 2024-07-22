@@ -21,6 +21,7 @@ Technologies Used:
     - UINavigationController
     - UICollectionView / UICollectionViewCell
     - UIStackView - UIView - UIButton
+    - Enums
 - Persistence
     - Firestore
     - UserDefaults
@@ -29,6 +30,7 @@ Technologies Used:
     - MVVM
 
 
-I performed it just for the registry purpose, in 2 days. It's relatively simple. 
+
+I performed it just for the registry purpose, in 3 days. It's relatively simple. 
 
 ![alt text](https://github.com/whoisarte/QuarrelApp/blob/master/DemoGif.gif "Logo Title Text 1")
