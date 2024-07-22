@@ -31,4 +31,4 @@ Technologies Used:
 
 I performed it just for the registry purpose, in 2 days. It's relatively simple. 
 
-![alt text](https://github.com/whoisarte/QuarrelApp/blob/master/Gif.gif "Logo Title Text 1")
+![alt text](https://github.com/whoisarte/QuarrelApp/blob/master/DemoGif.gif "Logo Title Text 1")
